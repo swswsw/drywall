@@ -48,7 +48,8 @@ $ grunt
 ```
 
 change config.js's email address (there are 3 places where email address is specified).  search and replace all instances of "your@email.addy".
-change the email password: 
+
+change the email password.  find the following in config.js:
 
 ```
 password: process.env.SMTP_PASSWORD || 'bl4rg!',
@@ -60,11 +61,16 @@ replace "bl4rg!".
 Troubleshooting
 ---------------
 
-> bower install
+```bash
+$ bower install
 /usr/bin/env: node: No such file or directory
+```
 
 fix by:
+```bash
 ln -s /usr/bin/nodejs /usr/bin/node
+```
+
 
 
 Requirements
