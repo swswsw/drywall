@@ -29,6 +29,44 @@ Live Demos
 
 __Note:__ The live demos have been modified so you cannot change the root user, the root user's linked Administrator role or the root Admin Group. This was done in order to keep the app ready to test at all times.
 
+
+Installations on Ubuntu 13.10
+-----------------------------
+
+```bash
+$ sudo apt-get install nodejs
+$ sudo apt-get install npm
+$ npm install grunt-cli -g
+$ npm install bower -g
+```
+
+```bash
+$ git clone git@github.com:jedireza/drywall.git && cd ./drywall
+$ npm install && bower install
+$ mv ./config.example.js ./config.js #set mongodb and email credentials
+$ grunt
+```
+
+change config.js's email address (there are 3 places where email address is specified).  search and replace all instances of "your@email.addy".
+change the email password: 
+
+```
+password: process.env.SMTP_PASSWORD || 'bl4rg!',
+```
+replace "bl4rg!".
+
+
+
+Troubleshooting
+---------------
+
+> bower install
+/usr/bin/env: node: No such file or directory
+
+fix by:
+ln -s /usr/bin/nodejs /usr/bin/node
+
+
 Requirements
 ------------
 
