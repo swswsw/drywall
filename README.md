@@ -98,7 +98,7 @@ Installation
 ------------
 
 ```bash
-$ git clone git@github.com:jedireza/drywall.git && cd ./drywall
+$ git clone git@github.com:swswsw/drywall.git && cd ./drywall
 $ npm install && bower install
 $ mv ./config.example.js ./config.js #set mongodb and email credentials
 $ grunt
