@@ -29,6 +29,10 @@ function ensureAccount(req, res, next) {
 }
 
 exports = module.exports = function(app, passport) {
+
+  // youtube tipping
+  app.get('/emailin', require('./views/emailin/index').init);
+
   //front end
   app.get('/', require('./views/index').init);
   app.get('/about/', require('./views/about/index').init);
