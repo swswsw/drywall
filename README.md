@@ -56,6 +56,8 @@ password: process.env.SMTP_PASSWORD || 'bl4rg!',
 ```
 replace "bl4rg!".
 
+go through the Setup section below to setup the Mongodb user.
+
 
 
 Troubleshooting
