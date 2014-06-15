@@ -33,6 +33,10 @@ exports = module.exports = function(app, passport) {
   // youtube tipping
   app.get('/emailin', require('./views/emailin/index').init);
 
+  // deposit/withdraw
+  app.get('/deposit', require('./views/deposit/index').init);
+  app.get('/withdraw', require('./views/withdraw/index').init);
+
   //front end
   app.get('/', require('./views/index').init);
   app.get('/about/', require('./views/about/index').init);
