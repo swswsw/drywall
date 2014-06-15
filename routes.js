@@ -36,6 +36,7 @@ exports = module.exports = function(app, passport) {
   // deposit/withdraw
   app.get('/deposit', require('./views/deposit/index').init);
   app.get('/withdraw', require('./views/withdraw/index').init);
+  app.all('/addrbalance', require('./views/addrbalance/index').init);
 
   //front end
   app.get('/', require('./views/index').init);
