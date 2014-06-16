@@ -3,15 +3,15 @@ html(lang="en")
   head
     title= pageTitle
     script(type='text/javascript').
-      if (foo) {
-         bar(1 + 5)
-      }
+      
   body
-    h1 emailin: email coming in
+    h1 Withdraw Bitcoin
     #container.col
-      if youAreUsingJade
-        p You are amazing
+      if txhash
+        p withdraw successful
       else
-        p Get on it!
+        p withdraw unsuccessful
       p.
-        this is used when new email comes in due to users commenting on youtube with +cointipme.
+        txhash: #{txhash}
+      p
+        a(href="http://tbtc.blockr.io/tx/info/#{txhash}") see transaction in blockexplorer
