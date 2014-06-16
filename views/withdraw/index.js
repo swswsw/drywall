@@ -42,7 +42,13 @@ exports.init = function(req, res){
 	  	}
 	  }
 
-	  res.render('withdraw/index', { txhash: txhash });
+	  res.render('withdraw/index', { 
+	  	txinfo: {
+	  		txhash: txhash,
+	  		recipientAddr: recipientAddr,
+	  		amount: amount,
+	  	} 
+	  });
 
 	});
 };

@@ -7,11 +7,13 @@ html(lang="en")
   body
     h1 Withdraw Bitcoin
     #container.col
-      if txhash
+      p.
+        withdraw #{txinfo.amount} btc to #{txinfo.recipientAddr}
+      if txinfo.txhash !== ""
         p withdraw successful
       else
         p withdraw unsuccessful
       p.
-        txhash: #{txhash}
+        txhash: #{txinfo.txhash}
       p
-        a(href="http://tbtc.blockr.io/tx/info/#{txhash}") see transaction in blockexplorer
+        a(href="http://tbtc.blockr.io/tx/info/#{txinfo.txhash}") see transaction in blockexplorer
