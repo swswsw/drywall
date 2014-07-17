@@ -1,9 +1,15 @@
-doctype html
-html(lang="en")
-  head
-    title= pageTitle
+extends ../../layouts/default
+
+block head
+  title Contact Us
+
+block neck
+  link(rel='stylesheet', href='/views/contact/index.min.css?#{cacheBreaker}')
+
+block feet
+  script(src='/views/contact/index.min.js?#{cacheBreaker}')
       
-  body
+block body
     h1 Deposit Bitcoin
     #container.col
       if youAreUsingJade
