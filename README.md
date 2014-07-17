@@ -30,7 +30,7 @@ Live Demos
 __Note:__ The live demos have been modified so you cannot change the root user, the root user's linked Administrator role or the root Admin Group. This was done in order to keep the app ready to test at all times.
 
 
-Installations on Ubuntu 13.10
+Installations on Ubuntu 13.10 and 14.04
 -----------------------------
 
 ```bash
@@ -44,6 +44,8 @@ $ npm install bower -g
 $ git clone git@github.com:swswsw/drywall.git && cd ./drywall
 $ npm install && bower install
 $ mv ./config.example.js ./config.js #set mongodb and email credentials
+$ npm install bitcore
+$ npm install mongodb
 $ grunt
 ```
 
