@@ -58,6 +58,8 @@ password: process.env.SMTP_PASSWORD || 'bl4rg!',
 ```
 replace "bl4rg!".
 
+npm install bitcore and mongodb is done because those are not included in bower yet.
+
 go through the Setup section below to setup the Mongodb user.
 
 
