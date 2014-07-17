@@ -5,6 +5,10 @@ exports.init = function(req, res){
   var balance = -1;
 
   // get address
+  var addr = req.param("addr");
+  if (!addr) {
+	addr = 'mnK8n73hHzkwX7NWwPyjULJPJUF3debAdD'; // for testing, not for production.  msVtfNesCghLDa2ieLxJQ54TGYFn5YeEGc
+  }  
 
   var bitcore = require("bitcore");
 
@@ -20,7 +24,7 @@ exports.init = function(req, res){
 
 	var rpc = new RpcClient(config);
 
-	rpc.getreceivedbyaddress('mnK8n73hHzkwX7NWwPyjULJPJUF3debAdD', 0, function(err, ret) {
+	rpc.getreceivedbyaddress(addr, 0, function(err, ret) {
 	  if (err) {
 	    console.error('An error occured getting new address');
 	    console.error(err);
