@@ -2,19 +2,24 @@ extends ../../layouts/default
 
 block head
   title Deposit
+  script(src='/vendor/qrcode/qrcode.js?#{cacheBreaker}')
 
 block neck
   link(rel='stylesheet', href='/views/contact/index.min.css?#{cacheBreaker}')
 
 block feet
   script(src='/views/contact/index.min.js?#{cacheBreaker}')
+  
       
 block body
     h1 Deposit Bitcoin
-    #container.col
-      if youAreUsingJade
-        p You are amazing
-      else
-        p Get on it!
-      p.
-        address: #{addr}
+    p To fund your account, please deposit bitcoin to address
+    h3 #{addr}
+    p Or you can scan the following QR code
+
+    #qrcode.qrcodeclass
+
+    script(type='text/javascript').
+      new QRCode(document.getElementById("qrcode"), "bitcoin:#{addr}");
+
+
