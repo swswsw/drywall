@@ -1,5 +1,6 @@
 bower_components/*
 public/vendor/*
+!public/vendor/qrcode/
 node_modules/*
 *.min.js
 *.min.js.map
