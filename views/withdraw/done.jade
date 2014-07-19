@@ -1,0 +1,24 @@
+extends ../../layouts/default
+
+block head
+  title Withdraw
+
+block neck
+  link(rel='stylesheet', href='/views/contact/index.min.css?#{cacheBreaker}')
+
+block feet
+  script(src='/views/contact/index.min.js?#{cacheBreaker}')
+
+block body
+    h1 Withdraw Bitcoin
+    #container.col
+      p.
+        withdraw #{txinfo.amount} btc to #{txinfo.recipientAddr}
+      if txinfo.txhash !== ""
+        p withdraw successful
+      else
+        p withdraw unsuccessful
+      p.
+        txhash: #{txinfo.txhash}
+      p
+        a(href="http://tbtc.blockr.io/tx/info/#{txinfo.txhash}") see transaction in blockexplorer
