@@ -52,3 +52,35 @@ exports.init = function(req, res){
 
 	});
 };
+
+
+exports.withdraw = function(req, res){
+  console.log("**** withdraw called ****");
+  var workflow = req.app.utility.workflow(req, res);
+
+  workflow.on('validate', function() {
+    if (!req.body.addr) {
+      workflow.outcome.errfor.addr = 'required';
+    }
+
+    if (!req.body.amount) {
+      workflow.outcome.errfor.amount = 'required';
+    }
+
+    if (!req.body.note) {
+      workflow.outcome.errfor.note = 'required';
+    }
+
+    if (workflow.hasErrors()) {
+      return workflow.emit('response');
+    }
+
+    workflow.emit('sendEmail');
+  });
+
+  workflow.on('sendEmail', function() {
+    console.log('***** sendEmail ******* ');
+  });
+
+  //workflow.emit('validate');
+};

@@ -46,7 +46,7 @@ block body
       div.form-group(class!='<%- errfor.note ? "has-error" : "" %>')
         label Note:
         textarea.form-control(name='note', rows='5') <%= message %>
-        span.help-block <%- errfor.note %>
+        span.help-block <%- errfor.message %>
       div.form-group
         button.btn.btn-primary.btn-contact(type='button') Withdraw
       |<% } %>
