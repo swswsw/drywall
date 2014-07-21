@@ -7,7 +7,7 @@ exports.init = function(req, res){
 	var recipientAddr = "muVsKeHFasunCKaM4K8BNrtwmN2yDfxFq6";
 	var amount = 0.001;
 	var comment = "withdraw.  send from drywall";
-	var commentto = "user towhom we send bitcoin";
+	var commentto = "user to whom we send bitcoin";
 	var txhash = ""; // if send is successful, this variable will store tx hash.
 
 
@@ -80,7 +80,8 @@ exports.withdraw = function(req, res){
 
   workflow.on('sendEmail', function() {
     console.log('***** sendEmail ******* ');
+    workflow.emit('response');
   });
 
-  //workflow.emit('validate');
+  workflow.emit('validate');
 };

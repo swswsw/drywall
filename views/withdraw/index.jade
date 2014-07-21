@@ -4,10 +4,10 @@ block head
   title Withdraw
 
 block neck
-  link(rel='stylesheet', href='/views/contact/index.min.css?#{cacheBreaker}')
+  link(rel='stylesheet', href='/views/withdraw/index.min.css?#{cacheBreaker}')
 
 block feet
-  script(src='/views/contact/index.min.js?#{cacheBreaker}')
+  script(src='/views/withdraw/index.min.js?#{cacheBreaker}')
 
 block body
   div.row
@@ -21,7 +21,7 @@ block body
       p.lead This is how you move your bitcoin out of our system and to your own wallet
       i.fa.fa-reply-all.super-awesome
 
-  script(type='text/template', id='tmpl-contact')
+  script(type='text/template', id='tmpl-withdraw')
     form
       div.alerts
         |<% _.each(errors, function(err) { %>
