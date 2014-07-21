@@ -67,19 +67,29 @@ exports.withdraw = function(req, res){
       workflow.outcome.errfor.amount = 'required';
     }
 
-    if (!req.body.note) {
-      workflow.outcome.errfor.note = 'required';
-    }
+    // if (!req.body.note) {
+    //   workflow.outcome.errfor.note = 'required';
+    // }
+
+    // todo: check if amount < available fund of the user.  and less than total hot wallet fund.  
 
     if (workflow.hasErrors()) {
       return workflow.emit('response');
     }
 
-    workflow.emit('sendEmail');
+    workflow.emit('sendFund');
   });
 
-  workflow.on('sendEmail', function() {
-    console.log('***** sendEmail ******* ');
+  workflow.on('sendFund', function() {
+    console.log('***** sendFund ******* ');
+    var addr = req.body.addr;
+    var amount = req.body.amount;
+    var note = req.body.note;
+    console.log('addr='+addr+", amount="+amount+", note="+note);
+    // addr and amount is required
+    if (addr && amount) {
+
+    }
     workflow.emit('response');
   });
 
