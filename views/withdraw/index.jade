@@ -38,15 +38,15 @@ block body
       div.form-group(class!='<%- errfor.addr ? "has-error" : "" %>')
         label Your Bitcoin Address:
         input.form-control(type='text', name='addr', value!='<%= name %>')
-        span.help-block <%- errfor.name %>
+        span.help-block <%- errfor.addr %>
       div.form-group(class!='<%- errfor.amount ? "has-error" : "" %>')
         label Amount:
         input.form-control(type='number', name='amount', value!='<%= email %>')
-        span.help-block <%- errfor.email %>
+        span.help-block <%- errfor.amount %>
       div.form-group(class!='<%- errfor.note ? "has-error" : "" %>')
         label Note:
         textarea.form-control(name='note', rows='5') <%= message %>
-        span.help-block <%- errfor.message %>
+        span.help-block <%- errfor.note %>
       div.form-group
         button.btn.btn-primary.btn-contact(type='button') Withdraw
       |<% } %>
