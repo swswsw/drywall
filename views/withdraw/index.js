@@ -2,13 +2,14 @@
 
 /**
  * actually send bitcoin
+ * @param amount [float]
  */
-var sendBtc = function(addr, amount) {
+var sendBtc = function(recipientAddr, amount) {
   	// this is only proof of concept.  a lot of stuff are hardcoded. 
 	// should check if funds are available and has 6 confirmations at least.  
 	// for mined coins, we need to have 30 confirmations.  
-	var recipientAddr = "muVsKeHFasunCKaM4K8BNrtwmN2yDfxFq6";
-	var amount = 0.001;
+	//var recipientAddr = "muVsKeHFasunCKaM4K8BNrtwmN2yDfxFq6";
+	//var amount = 0.001;
 	var comment = "withdraw.  send from drywall";
 	var commentto = "user to whom we send bitcoin";
 	var txhash = ""; // if send is successful, this variable will store tx hash.
@@ -21,7 +22,7 @@ var sendBtc = function(addr, amount) {
 	var config = {
 	  protocol: 'http',
 	  user: 'rpc',
-	  pass: 'rpcpwd1234',
+	  pass: '',
 	  host: '127.0.0.1',
 	  port: '18332',
 	};
@@ -97,10 +98,13 @@ exports.withdraw = function(req, res){
     var addr = req.body.addr;
     var amount = req.body.amount;
     var note = req.body.note;
+
+    var fAmount = parseFloat(amount); // amount as float
     console.log('addr='+addr+", amount="+amount+", note="+note);
     // addr and amount is required
-    if (addr && amount) {
-    	sendBtc(addr, amount);
+    if (addr && amount && fAmount !== NaN) {
+
+    	sendBtc(addr, fAmount);
     }
     workflow.emit('response');
   });
