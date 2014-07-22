@@ -1,5 +1,8 @@
 'use strict';
 
+var bitcore = require("bitcore");
+var Address = bitcore.Address;
+
 /**
  * actually send bitcoin
  * @param amount [float]
@@ -13,9 +16,6 @@ var sendBtc = function(recipientAddr, amount) {
 	var comment = "withdraw.  send from drywall";
 	var commentto = "user to whom we send bitcoin";
 	var txhash = ""; // if send is successful, this variable will store tx hash.
-
-
-	var bitcore = require("bitcore");
 
 	var RpcClient = bitcore.RpcClient;
 
@@ -71,17 +71,29 @@ exports.withdraw = function(req, res){
   workflow.on('validate', function() {
     if (!req.body.addr) {
       workflow.outcome.errfor.addr = 'required';
+    } else {
+      // test if it is valid address
+      
+      var bitcoreAddr = new Address(req.body.addr);
+      if (!bitcoreAddr.isValid()) {
+        workflow.outcome.errfor.addr = 'not a valid address';
+      }
     }
 
     if (!req.body.amount) {
       workflow.outcome.errfor.amount = 'required';
+    } else {
+      // test if it is a number
+      var fAmount = parseFloat(req.body.amount);
+      if (isNaN(fAmount)) {
+        workflow.outcome.errfor.amount = 'must be a number';
+      }
     }
 
     // if (!req.body.note) {
     //   workflow.outcome.errfor.note = 'required';
     // }
 
-    // todo: validate addr is a valid bitcoin address
     // todo: validate amount is number
     // todo: check if amount < available fund of the user.  and less than total hot wallet fund.  
 
@@ -102,7 +114,7 @@ exports.withdraw = function(req, res){
     var fAmount = parseFloat(amount); // amount as float
     console.log('addr='+addr+", amount="+amount+", note="+note);
     // addr and amount is required
-    if (addr && amount && fAmount !== NaN) {
+    if (addr && amount && !isNaN(fAmount)) {
 
     	sendBtc(addr, fAmount);
     }
