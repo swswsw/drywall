@@ -1,7 +1,10 @@
 'use strict';
 
-exports.init = function(req, res){
-	// this is only proof of concept.  a lot of stuff are hardcoded. 
+/**
+ * actually send bitcoin
+ */
+var sendBtc = function(addr, amount) {
+  	// this is only proof of concept.  a lot of stuff are hardcoded. 
 	// should check if funds are available and has 6 confirmations at least.  
 	// for mined coins, we need to have 30 confirmations.  
 	var recipientAddr = "muVsKeHFasunCKaM4K8BNrtwmN2yDfxFq6";
@@ -18,7 +21,7 @@ exports.init = function(req, res){
 	var config = {
 	  protocol: 'http',
 	  user: 'rpc',
-	  pass: '',
+	  pass: 'rpcpwd1234',
 	  host: '127.0.0.1',
 	  port: '18332',
 	};
@@ -42,15 +45,21 @@ exports.init = function(req, res){
 	  	}
 	  }
 
-	  res.render('withdraw/index', { 
-	  	txinfo: {
-	  		txhash: txhash,
-	  		recipientAddr: recipientAddr,
-	  		amount: amount,
-	  	} 
-	  });
+	  // tx info output.  
+	  var txinfo = {
+  		txhash: txhash,
+  		recipientAddr: recipientAddr,
+  		amount: amount,
+  	};
 
 	});
+};
+
+exports.init = function(req, res){
+  
+  res.render('withdraw/index', { 
+  	
+  });
 };
 
 
@@ -71,7 +80,10 @@ exports.withdraw = function(req, res){
     //   workflow.outcome.errfor.note = 'required';
     // }
 
+    // todo: validate addr is a valid bitcoin address
+    // todo: validate amount is number
     // todo: check if amount < available fund of the user.  and less than total hot wallet fund.  
+
 
     if (workflow.hasErrors()) {
       return workflow.emit('response');
@@ -88,7 +100,7 @@ exports.withdraw = function(req, res){
     console.log('addr='+addr+", amount="+amount+", note="+note);
     // addr and amount is required
     if (addr && amount) {
-
+    	sendBtc(addr, amount);
     }
     workflow.emit('response');
   });
